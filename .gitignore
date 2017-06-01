@@ -1,4 +1,11 @@
+# Rstudio files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+# Image files
+*.jp*g
+*.png
+*.tif*
+
