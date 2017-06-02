@@ -1,3 +1,3 @@
 #! /bin/bash
 
-convert data/dishes/dish-sample.png data/dishes/dish-sample.jpg
+convert data/dishes/dish-sample.svg data/dishes/dish-sample.jpg
