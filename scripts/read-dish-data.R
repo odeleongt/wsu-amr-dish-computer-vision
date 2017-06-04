@@ -14,15 +14,16 @@ plot(wells)
 
 
 # Find wells (i.e. isolated blobs)
-labelled_wells <- wells %>%
+labelled_dish <- wells %>%
   label %>%
   as.data.frame() %>%
   as_tibble %>%
-  filter(value > 0)
+  rename(region = value) %>%
+  filter(region > 0)
 
 # Find centers
-well_centers <- labelled_wells %>%
-  group_by(value) %>%
+well_centers <- labelled_dish %>%
+  group_by(region) %>%
   summarize(
     x = mean(x),
     y = mean(y)
@@ -95,7 +96,7 @@ labelled_wells <- well_centers %>%
 # See plate structure
 labelled_wells %>%
   select(-x, -y) %>%
-  spread(key = x_lab, value = value)
+  spread(key = x_lab, value = region)
 
 
 # End of script
