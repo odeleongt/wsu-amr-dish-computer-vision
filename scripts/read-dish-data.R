@@ -82,11 +82,12 @@ labelled_wells <- well_centers %>%
   mutate(
     # Asign positions
     y_lab = cut(
-      y, breaks = y_rows, labels = seq(1, y_wells, length.out = y_wells)
+      y, breaks = y_rows,
+      labels = letters[seq(1, y_wells, length.out = y_wells)]
     ),
     x_lab = cut(
       x, breaks = x_cols,
-      labels = letters[seq(1, x_wells, length.out = x_wells)],
+      labels = seq(1, x_wells, length.out = x_wells),
       ordered_result = TRUE
     )
   )
