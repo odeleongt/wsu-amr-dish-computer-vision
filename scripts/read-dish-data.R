@@ -4,11 +4,11 @@ library(package = "imager")
 library(package = "tidyverse")
 
 # Load image
-dish <- load.image(file = "data/dishes/dish-sample.jpg")
+dish <- load.image(file = "data/dishes/synthetic/dish.jpg")
 plot(dish)
 
 # Extract areas with highest luminance
-lum_threshold <- 0.7
+lum_threshold <- 0.5
 wells <- dish > lum_threshold
 plot(wells)
 
@@ -33,10 +33,6 @@ well_centers <- labelled_dish %>%
 # Look at identified centers
 plot(wells)
 well_centers %>%
-  # Exclude controls
-  filter(
-    !value %in% range(value)
-  ) %>%
   with(points(x, y, col = "white", pch = 20))
 
 
@@ -47,10 +43,6 @@ y_wells <- 8
 
 # Plate limits
 lims <- well_centers %>%
-  # Exclude controls
-  filter(
-    !value %in% range(value)
-  ) %>%
   summarize(
     min_x = min(x),
     min_y = min(y),
@@ -76,10 +68,6 @@ y_rows <- seq(
 
 # Label wells
 labelled_wells <- well_centers %>%
-  # Exclude controls
-  filter(
-    !value %in% range(value)
-  ) %>%
   mutate(
     # Asign positions
     y_lab = cut(
